@@ -1,6 +1,13 @@
 package main
 
+import (
+	"log"
+
+	"github.com/jbltx/master-server/cmd"
+)
+
 func main() {
-	s := NewMasterServer()
-	s.Listen("0.0.0.0:8080")
+	if err := cmd.RootCmd.Execute(); err != nil {
+		log.Fatal("An error has occured during execution of the process: %v", err)
+	}
 }
