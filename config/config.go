@@ -29,5 +29,24 @@ type Config struct {
 
 // IsValid checks if the configuration instance has all values defined with valid data
 func (cfg *Config) IsValid() bool {
+	if cfg.Port <= 0 || cfg.Port > 65535 {
+		return false
+	}
+	if len(cfg.Domain) == 0 {
+		return false
+	}
+	if cfg.HeartbeatExpiration <= 0 {
+		return false
+	}
+	if cfg.ChallengeExpiration <= 0 {
+		return false
+	}
+	if len(cfg.Database.URL) == 0 {
+		return false
+	}
+	if len(cfg.Database.Name) == 0 {
+		return false
+	}
+
 	return true
 }
